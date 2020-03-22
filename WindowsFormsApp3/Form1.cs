@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApp3
 {
@@ -16,7 +17,8 @@ namespace WindowsFormsApp3
         {
             InitializeComponent();
         }
-
+        OpenFileDialog OpenDlg = new OpenFileDialog();
+        SaveFileDialog SaveDlg = new SaveFileDialog();
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -49,7 +51,12 @@ namespace WindowsFormsApp3
 
         private void открытьToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            
+            if (OpenDlg.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader Reader = new StreamReader(OpenDlg.FileName, Encoding.Default);
+                richTextBox1.Text = Reader.ReadToEnd();
+                Reader.Close();
+            }
 
         }
 
@@ -60,7 +67,16 @@ namespace WindowsFormsApp3
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (SaveDlg.ShowDialog()==DialogResult.OK)
+            {
+                StreamWriter Writer = new StreamWriter(SaveDlg.FileName);
+                for (int i = 0; i < listBox2.Items.Count; i++)
+                {
+                    Writer.WriteLine((string)listBox2.Items[i]);
+                }
+                Writer.Close();
+            }
+            SaveDlg.Dispose();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -85,8 +101,18 @@ namespace WindowsFormsApp3
 
         private void richTextBox1_Click(object sender, EventArgs e)
         {
-            OpenFaileDialog OpenDlg = new OpenFaileDialog();
 
+        }
+
+        private void openFileDialog1_FileOk_1(object sender, CancelEventArgs e)
+        {
+           
+
+        }
+
+        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }
