@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace WindowsFormsApp3
 {
@@ -113,6 +114,58 @@ namespace WindowsFormsApp3
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+
+            listBox1.BeginUpdate();
+
+            string[] String = richTextBox1.Text.Split(new char[] { '\n', '\t', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string s in String)
+            {
+                string Str = s.Trim();
+                //if (Str == String.Empty) continue;
+                if (radioButton1.Checked) listBox1.Items.Add(Str);
+                if (radioButton2.Checked) 
+                {
+                    if (Regex.IsMatch(Str, @"\d")) listBox1.Items.Add(Str);
+                }
+                if (radioButton3.Checked)
+                {
+                    if (Regex.IsMatch(Str, @"\w+@\w+\.\w+")) listBox1.Items.Add(Str);
+                }
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            listBox3.Items.Clear();
+
+            string Find = textBox1.Text;
+
+            if (checkBox1.Checked)
+            {
+                foreach (string String in listBox1.Items)
+                {
+                    if (String.Contains(Find)) listBox3.Items.Add(String);
+                }
+            }
+            if (checkBox2.Checked)
+            {
+                foreach (string String in listBox2.Items)
+                {
+                    if (String.Contains(Find)) listBox3.Items.Add(String);
+                }
+            }
         }
     }
 }

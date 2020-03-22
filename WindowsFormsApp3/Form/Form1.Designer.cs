@@ -130,6 +130,7 @@
             this.button13.TabIndex = 20;
             this.button13.Text = "Выход";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button10
             // 
@@ -307,6 +308,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Начать";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // radioButton3
             // 
@@ -364,6 +366,7 @@
             this.button12.TabIndex = 19;
             this.button12.Text = "Поиск";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // checkBox2
             // 
