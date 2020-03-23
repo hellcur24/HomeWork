@@ -167,5 +167,20 @@ namespace WindowsFormsApp3
                 }
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Form2 AddRec = new Form2();
+            AddRec.Owner = this;
+            AddRec.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            for (int i = ListBox.Items.Count - 1; i >= 0; i++)
+            {
+                if (ListBox.GetSelected(i)) ListBox.Items.Remove(i);
+            }
+        }
     }
 }
